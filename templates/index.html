@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RehabCare — Recovery, Reimagined</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+<!-- ===================== LOGIN PAGE ===================== -->
+<div class="page active" id="page-auth">
+  <div class="auth-bg">
+    <div class="auth-circle-1"></div>
+    <div class="auth-circle-2"></div>
+    <div class="auth-grid"></div>
+  </div>
+  <div class="auth-container">
+    <div class="auth-logo">
+      <span class="nav-logo-dot"></span>
+      RehabCare
+    </div>
+    <div class="auth-card">
+
+      <!-- LOGIN FORM -->
+      <div id="login-form">
+        <div class="auth-title">Welcome back</div>
+        <div class="auth-subtitle">Login to continue your recovery journey</div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="login-email" placeholder="abc@xyz.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="login-password" placeholder="Enter your password"/>
+        </div>
+        <div class="auth-error" id="login-error"></div>
+        <button class="form-submit" onclick="handleLogin()">Login →</button>
+        <div class="auth-switch">
+          Don't have an account?
+          <span onclick="showRegister()">Register here</span>
+        </div>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div id="register-form" style="display:none;">
+        <div class="auth-title">Create account</div>
+        <div class="auth-subtitle">Start your rehabilitation journey today</div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="reg-email" placeholder="abc@xyz.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="reg-password" placeholder="Create a password"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" id="reg-confirm" placeholder="Confirm your password"/>
+        </div>
+        <div class="auth-error" id="reg-error"></div>
+        <div class="auth-success" id="reg-success"></div>
+        <button class="form-submit" onclick="handleRegister()">Register →</button>
+        <div class="auth-switch">
+          Already have an account?
+          <span onclick="showLogin()">Login here</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- NAV (hidden until logged in) -->
+<nav id="main-nav" style="display:none;">
+  <div class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    RehabCare
+  </div>
+  <div class="nav-links">
+    <a class="active" onclick="showPage('home')">Home</a>
+    <a onclick="showPage('exercises')">Exercises</a>
+    <a onclick="showPage('contact')">Contact</a>
+  </div>
+  <div class="nav-user">
+    <span id="nav-email"></span>
+    <button class="logout-btn" onclick="handleLogout()">Logout</button>
+  </div>
+</nav>
+
+<!-- ===================== HOME ===================== -->
+<div class="page" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-circle-1"></div>
+    <div class="hero-circle-2"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Recovery that<br>puts <em>you</em> first.</h1>
+        <p class="hero-desc">Rehabilitation support powered by MediaPipe and OpenCV, using research-based joint angle references for accurate movement analysis. Track progress, follow guided exercises, and improve recovery through real-time feedback.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('exercises')">Explore Exercises →</button>
+          <button class="btn-outline" onclick="showPage('contact')">Ask us Questions</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:90px 4rem 0;max-width:1200px;margin:0 auto;">
+    <div class="section-tag">Why Choose Us</div>
+    <h2 class="section-title">Rehabilitation done<br>the right way.</h2>
+    <p class="section-desc">We combine clinical expertise with smart technology to make recovery accessible, measurable, and effective.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏥</div>
+        <h3>Research-Informed Design</h3>
+        <p>Exercise angles and movement evaluation are based on physiotherapy research papers and standard joint angle references.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Track Your Progress</h3>
+        <p>Real-time posture tracking and repetition counting help users monitor their exercise performance and improvement over time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Guided Exercise System</h3>
+        <p>Predefined exercise criteria and angle thresholds guide users to perform movements correctly and consistently.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI-Powered Analysis</h3>
+        <p>Using OpenCV and MediaPipe, the system analyzes knee joint movement and body alignment in real time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Consistent Rehabilitation Support</h3>
+        <p>Structured monitoring helps users maintain proper form and stay consistent with their rehabilitation routine.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Safe & Feedback-Oriented</h3>
+        <p>The system provides immediate feedback on incorrect posture or movement to support safer exercise execution.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#04342C,#085041);margin:80px 4rem;border-radius:32px;padding:70px;display:flex;gap:60px;align-items:center;max-width:1200px;margin-left:auto;margin-right:auto;">
+    <div style="flex:1;">
+      <div style="font-size:0.8rem;color:var(--teal-200);letter-spacing:1px;text-transform:uppercase;font-weight:600;margin-bottom:12px;">Ready to start?</div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:#fff;letter-spacing:-0.8px;line-height:1.2;margin-bottom:16px;">Begin your recovery<br>journey today.</h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:1rem;font-weight:300;line-height:1.8;">Follow guided exercise programs designed to support proper movement and consistent rehabilitation.</p>
+    </div>
+    <div style="flex:0 0 auto;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <button class="btn-primary" onclick="showPage('exercises')">View Exercises</button>
+      <button class="btn-outline" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 <strong>RehabCare</strong> — Recovery, Reimagined. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- ===================== EXERCISES ===================== -->
+<div class="page" id="page-exercises">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-header-tag">Guided Programmes</div>
+      <h1>Rehabilitation Exercises</h1>
+      <p>Expert-designed exercises for a structured and effective recovery. Click any exercise to learn the technique.</p>
+    </div>
+  </div>
+  <div class="exercises-grid" id="exercises-grid">
+
+    <div class="exercise-card" data-cat="lower">
+      <img src="/static/lunges.png" alt="Lunges"/>
+      <div class="exercise-card-body">
+        <span class="exercise-tag">Lower Body</span>
+        <h3>Lunges</h3>
+        <p>Strengthens leg muscles and improves dynamic balance critical for post-surgery recovery.</p>
+        <div class="exercise-meta">
+          <span class="meta-tag"><span class="meta-dot"></span>Beginner</span>
+          <span class="meta-tag"><span class="meta-dot"></span>10–15 reps</span>
+          <span class="meta-tag"><span class="meta-dot"></span>No equipment</span>
+        </div>
+        <button class="exercise-btn" onclick="openModal('lunges')">View Exercise →</button>
+        <button class="progress-btn" onclick="viewProgress('lunges')">📊 View Progress</button>
+      </div>
+    </div>
+
+    <div class="exercise-card" data-cat="lower">
+      <img src="/static/sit_to_stand.png" alt="Sit to Stand"/>
+      <div class="exercise-card-body">
+        <span class="exercise-tag">Lower Body</span>
+        <h3>Sit to Stand</h3>
+        <p>Rebuilds functional independence and core leg strength for everyday movement.</p>
+        <div class="exercise-meta">
+          <span class="meta-tag"><span class="meta-dot"></span>Beginner</span>
+          <span class="meta-tag"><span class="meta-dot"></span>8–12 reps</span>
+          <span class="meta-tag"><span class="meta-dot"></span>Chair needed</span>
+        </div>
+        <button class="exercise-btn" onclick="openModal('sitstand')">View Exercise →</button>
+        <button class="progress-btn" onclick="viewProgress('sit_to_stand')">📊 View Progress</button>
+      </div>
+    </div>
+
+    <div class="exercise-card" data-cat="balance">
+      <img src="/static/step_ups.png" alt="Step Ups"/>
+      <div class="exercise-card-body">
+        <span class="exercise-tag">Balance</span>
+        <h3>Step Ups</h3>
+        <p>Improves unilateral leg strength, coordination, and proprioception after lower limb injuries.</p>
+        <div class="exercise-meta">
+          <span class="meta-tag"><span class="meta-dot"></span>Intermediate</span>
+          <span class="meta-tag"><span class="meta-dot"></span>10 reps each</span>
+          <span class="meta-tag"><span class="meta-dot"></span>Step required</span>
+        </div>
+        <button class="exercise-btn" onclick="openModal('stepup')">View Exercise →</button>
+        <button class="progress-btn" onclick="viewProgress('step_ups')">📊 View Progress</button>
+      </div>
+    </div>
+
+    <div class="exercise-card" data-cat="lower">
+      <img src="/static/seated_knee_extension.png" alt="Knee Extension"/>
+      <div class="exercise-card-body">
+        <span class="exercise-tag">Lower Body</span>
+        <h3>Knee Extension</h3>
+        <p>Targeted quadriceps strengthening to support and stabilise the knee joint during rehabilitation.</p>
+        <div class="exercise-meta">
+          <span class="meta-tag"><span class="meta-dot"></span>Beginner</span>
+          <span class="meta-tag"><span class="meta-dot"></span>15 reps</span>
+          <span class="meta-tag"><span class="meta-dot"></span>Seated</span>
+        </div>
+        <button class="exercise-btn" onclick="openModal('knee')">View Exercise →</button>
+        <button class="progress-btn" onclick="viewProgress('knee_extension')">📊 View Progress</button>
+      </div>
+    </div>
+
+    <div class="exercise-card" data-cat="lower">
+      <img src="/static/squats.png" alt="Squats"/>
+      <div class="exercise-card-body">
+        <span class="exercise-tag">Lower Body</span>
+        <h3>Squats</h3>
+        <p>Builds compound lower body strength and movement control essential for full recovery.</p>
+        <div class="exercise-meta">
+          <span class="meta-tag"><span class="meta-dot"></span>Intermediate</span>
+          <span class="meta-tag"><span class="meta-dot"></span>12–15 reps</span>
+          <span class="meta-tag"><span class="meta-dot"></span>No equipment</span>
+        </div>
+        <button class="exercise-btn" onclick="openModal('squats')">View Exercise →</button>
+        <button class="progress-btn" onclick="viewProgress('squats')">📊 View Progress</button>
+      </div>
+    </div>
+
+    <div class="exercise-card" data-cat="cardio">
+      <img src="/static/walking.png" alt="Walking Progress Tracker"/>
+      <div class="exercise-card-body">
+        <span class="exercise-tag">Cardio</span>
+        <h3>Walking Tracker</h3>
+        <p>Monitor daily steps and pace to build cardiovascular endurance progressively during recovery.</p>
+        <div class="exercise-meta">
+          <span class="meta-tag"><span class="meta-dot"></span>All levels</span>
+          <span class="meta-tag"><span class="meta-dot"></span>Daily</span>
+          <span class="meta-tag"><span class="meta-dot"></span>Outdoors</span>
+        </div>
+        <button class="exercise-btn" onclick="openModal('walking')">View Exercise →</button>
+        <button class="progress-btn" onclick="viewProgress('walking')">📊 View Progress</button>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <p>© 2026 <strong>RehabCare</strong> — Recovery, Reimagined. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal" onclick="closeModalBg(event)">
+  <div class="modal" id="modal-content">
+    <div id="modal-body"></div>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<!-- ===================== CONTACT ===================== -->
+<div class="page" id="page-contact">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-header-tag">Get in Touch</div>
+      <h1>Have questions about exercises or posture correction?</h1>
+      <p>Have questions about rehabilitation exercises or posture correction?</p>
+    </div>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div style="margin-bottom:24px;">
+        <div class="section-tag">Our Details</div>
+        <h2 class="section-title" style="font-size:1.9rem;">We'd love<br>to hear from you.</h2>
+        <p style="color:var(--gray-400);font-weight:300;line-height:1.8;font-size:0.95rem;margin-top:8px;">Whether you're beginning your rehabilitation journey or exploring guided exercise support, our system is here to assist you.</p>
+      </div>
+      <div class="contact-info-card">
+        <div class="contact-info-icon">📧</div>
+        <div>
+          <div class="contact-info-label">Email</div>
+          <div class="contact-info-val">rehabcare@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-info-card">
+        <div class="contact-info-icon">📞</div>
+        <div>
+          <div class="contact-info-label">Phone</div>
+          <div class="contact-info-val">+91 98765 43210</div>
+        </div>
+      </div>
+      <div class="contact-info-card">
+        <div class="contact-info-icon">📍</div>
+        <div>
+          <div class="contact-info-label">Address</div>
+          <div class="contact-info-val">Pune, Maharashtra, India</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <div id="form-container">
+        <div class="form-title">Send a Message</div>
+        <div class="form-subtitle">We'll get back to you within 24 hours.</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" id="contact-fname" placeholder="Enter your first name"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" id="contact-lname" placeholder="Enter your last name"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="contact-email" placeholder="abc@xyz.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input type="tel" id="contact-phone" placeholder="+91 XXXXX XXXXX"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea id="contact-message" placeholder="Tell us about your condition or query..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Message →</button>
+      </div>
+      <div class="form-success" id="form-success">
+        <div class="success-icon">🎉</div>
+        <div class="success-title">Message Sent!</div>
+        <p class="success-msg">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+        <button class="btn-primary" style="margin-top:24px;" onclick="resetForm()">Send Another</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>© 2026 <strong>RehabCare</strong> — Recovery, Reimagined. All rights reserved.</p>
+  </footer>
+</div>
+
+<script src="/static/index.js"></script>
+</body>
+</html>
