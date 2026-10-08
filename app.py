@@ -78,11 +78,14 @@ def select_exercise():
     exercise = get_exercise(choice)
     print("Selected Exercise:", exercise)
 
-    # Walking launches its own script
+    # Launch exercise script with project working directory
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     if exercise == "walking":
-        subprocess.Popen([sys.executable, "walking_progress_tracker.py", choice, email])
+        script = os.path.join(base_dir, "walking_progress_tracker.py")
+        subprocess.Popen([sys.executable, script, choice, email], cwd=base_dir)
     else:
-        subprocess.Popen([sys.executable, "main.py", choice, email])
+        script = os.path.join(base_dir, "main.py")
+        subprocess.Popen([sys.executable, script, choice, email], cwd=base_dir)
 
     return jsonify({"status": "success", "exercise": exercise})
 

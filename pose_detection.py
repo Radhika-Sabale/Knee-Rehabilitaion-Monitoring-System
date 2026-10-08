@@ -1,3 +1,7 @@
+import sys
+if 'tensorflow' not in sys.modules:
+    sys.modules['tensorflow'] = None
+
 import cv2
 import mediapipe as mp
 

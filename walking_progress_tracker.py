@@ -1,8 +1,11 @@
+import sys
+if 'tensorflow' not in sys.modules:
+    sys.modules['tensorflow'] = None
+
 import cv2
 import mediapipe as mp
 import numpy as np
 import time
-import sys
 from data_manager import DataManager
 
 mp_drawing = mp.solutions.drawing_utils
@@ -39,7 +42,13 @@ start_time = time.time()
 total_distance = 0
 feedback = ""
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+if not cap.isOpened():
+    cap = cv2.VideoCapture(0)
+if not cap.isOpened():
+    cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+    if not cap.isOpened():
+        cap = cv2.VideoCapture(1)
 
 with mp_pose.Pose(
     static_image_mode=False,

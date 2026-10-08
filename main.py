@@ -1,5 +1,9 @@
 import os
 import sys
+
+if 'tensorflow' not in sys.modules:
+    sys.modules['tensorflow'] = None
+
 import lunges
 import squats
 import step_ups
@@ -44,7 +48,17 @@ elif exercise_type == "step_ups":
     step_ups.reset()
 
 # ---------------- INITIALIZATION ----------------
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+if not cap.isOpened():
+    cap = cv2.VideoCapture(0)
+if not cap.isOpened():
+    print("Camera index 0 not available. Trying index 1...")
+    cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+    if not cap.isOpened():
+        cap = cv2.VideoCapture(1)
+
+if not cap.isOpened():
+    print("ERROR: Could not open any camera. Please check your camera connection and Windows privacy permissions.")
 detector = PoseDetector()
 
 if exercise_type == "knee_extension":
